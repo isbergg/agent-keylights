@@ -43,7 +43,6 @@ sh.Run "pyw ""C:\path\to\agent-keylights\agentlights.py""", 0, False
 
 - Nothing leaves your machine. The hook writes only local files, and the controller talks only to OpenRGB on `127.0.0.1`.
 - The OpenRGB SDK server has no authentication. Bind it to `127.0.0.1` (as shown above) so other devices on your network can't control your lights.
-- `states/` contains session IDs and project paths and is git-ignored.
 
 ## License
 
