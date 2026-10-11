@@ -1,0 +1,15 @@
+{
+  "host": "127.0.0.1",
+  "port": 6742,
+  "fps": 20,
+  "keys": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  "base_color": [40, 40, 60],
+  "colors": {
+    "attention": { "rgb": [255, 0, 0],   "effect": "blink" },
+    "error":     { "rgb": [255, 0, 0],   "effect": "solid" },
+    "working":   { "rgb": [255, 220, 0], "effect": "pulse" },
+    "done":      { "rgb": [0, 255, 0],   "effect": "solid" },
+    "idle":      { "rgb": [0, 60, 255],  "effect": "solid" }
+  },
+  "stale_hours": 12
+}

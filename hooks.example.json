@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "SessionStart":     [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js SessionStart" }] }],
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js UserPromptSubmit" }] }],
+    "PreToolUse":       [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js PreToolUse" }] }],
+    "PostToolUse":      [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js PostToolUse" }] }],
+    "Notification":     [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js Notification" }] }],
+    "Stop":             [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js Stop" }] }],
+    "SessionEnd":       [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js SessionEnd" }] }]
+  }
+}

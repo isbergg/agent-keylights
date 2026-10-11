@@ -1,0 +1,4 @@
+# Runtime session states (contain local paths and session IDs)
+states/
+__pycache__/
+*.pyc
