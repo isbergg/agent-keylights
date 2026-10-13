@@ -8,8 +8,9 @@ See the status of your Claude Code agents on your RGB keyboard. Each session get
 | 🟡 Pulsing yellow | Working |
 | 🟢 Green | Task done |
 | 🔵 Blue | Idle, no task |
+| 🔴 Solid red | Task failed with an error |
 
-The first session lights key **1**, the second key **2**, up to **9**. Works with any keyboard supported by [OpenRGB](https://openrgb.org). Keyboards without per-key lighting show the most urgent state on the whole board.
+Sessions take keys **1**-**9** in order of start. Sub-agents (including background agents) get their own keys right after their parent session. Finished sub-agent keys clear on your next prompt. Works with any keyboard supported by [OpenRGB](https://openrgb.org). Keyboards without per-key lighting show the most urgent state on the whole board.
 
 ## How it works
 

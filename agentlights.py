@@ -45,7 +45,7 @@ def read_sessions(stale_hours):
             continue
         rec["id"] = name[:-5]
         sessions.append(rec)
-    sessions.sort(key=lambda r: r.get("created", 0))
+    sessions.sort(key=lambda r: (r.get("group", r.get("created", 0)), r.get("created", 0)))
     return sessions
 
 

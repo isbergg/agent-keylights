@@ -1,11 +1,114 @@
 {
   "hooks": {
-    "SessionStart":     [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js SessionStart" }] }],
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js UserPromptSubmit" }] }],
-    "PreToolUse":       [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js PreToolUse" }] }],
-    "PostToolUse":      [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js PostToolUse" }] }],
-    "Notification":     [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js Notification" }] }],
-    "Stop":             [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js Stop" }] }],
-    "SessionEnd":       [{ "hooks": [{ "type": "command", "command": "node C:/path/to/agent-keylights/hook.js SessionEnd" }] }]
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js SessionStart"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js PreToolUse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js PostToolUse"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js PermissionRequest"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js Notification"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js SubagentStart"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js SubagentStop"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js Stop"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js StopFailure"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/path/to/agent-keylights/hook.js SessionEnd"
+          }
+        ]
+      }
+    ]
   }
 }
