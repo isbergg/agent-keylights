@@ -15,6 +15,7 @@ from openrgb.utils import DeviceType, RGBColor
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATES = os.path.join(ROOT, "states")
+REFRESH_SECS = 15
 PRIORITY = ["attention", "error", "working", "done", "idle"]
 
 
@@ -83,9 +84,9 @@ def connect(cfg):
             time.sleep(5)
 
 
-def setup_devices(client, keys):
+def setup_devices(client, keys, quiet=False):
     boards = [d for d in client.devices if d.type == DeviceType.KEYBOARD]
-    if not boards:
+    if not boards and not quiet:
         print("No keyboard found in OpenRGB. Is it detected in the OpenRGB app?")
     setup = []
     for d in boards:
@@ -95,7 +96,8 @@ def setup_devices(client, keys):
             print(f"{d.name}: could not set custom mode ({e})")
         mapping = find_key_leds(d, keys)
         mode = "per-key" if mapping else "whole-board fallback"
-        print(f"Using {d.name} ({len(d.leds)} LEDs, {mode})")
+        if not quiet:
+            print(f"Using {d.name} ({len(d.leds)} LEDs, {mode})")
         setup.append((d, mapping))
     return setup
 
@@ -124,10 +126,18 @@ def main():
     base = RGBColor(*cfg["base_color"])
     frame = 1.0 / cfg.get("fps", 20)
     last = {}
+    next_refresh = time.time() + REFRESH_SECS
 
     print("AgentBoard running. Ctrl+C to stop.")
     while True:
         try:
+            if time.time() >= next_refresh:
+                # Catches a keyboard that appeared late at boot, or one that
+                # fell back to its own lighting after sleep/wake.
+                next_refresh = time.time() + REFRESH_SECS
+                client.update()
+                setup = setup_devices(client, cfg["keys"], quiet=True)
+                last.clear()
             cfg = load_config()  # live-reload colors
             t = time.time()
             sessions = read_sessions(cfg.get("stale_hours", 12))[: len(cfg["keys"])]
@@ -153,14 +163,23 @@ def main():
         except KeyboardInterrupt:
             print("Stopped.")
             return
-        except (ConnectionError, OSError) as e:
-            print(f"Lost connection to OpenRGB ({e}); reconnecting...")
+        except Exception as e:  # noqa: BLE001 - never die silently in the background
+            print(f"Error talking to OpenRGB ({e!r}); reconnecting...")
+            time.sleep(2)
+            try:
+                client.disconnect()
+            except Exception:  # noqa: BLE001
+                pass
             client = connect(cfg)
             setup = setup_devices(client, cfg["keys"])
             last.clear()
 
 
 if __name__ == "__main__":
+    if sys.stdout is None:
+        sys.stdout = sys.stderr = open(os.path.join(ROOT, "agentlights.log"), "a",
+                                       buffering=1, encoding="utf-8")
+        print(f"--- started {time.ctime()} ---")
     if "--list" in sys.argv:
         c = OpenRGBClient(load_config()["host"], load_config()["port"], "AgentBoard")
         for d in c.devices:

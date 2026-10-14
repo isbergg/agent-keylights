@@ -36,6 +36,8 @@ Create `AgentBoard.vbs` in your Startup folder (`Win+R` → `shell:startup`):
 
 ```vbs
 Set sh = CreateObject("WScript.Shell")
+' Wait for USB devices, or OpenRGB may miss the keyboard at boot.
+WScript.Sleep 20000
 sh.Run """C:\Program Files\OpenRGB\OpenRGB.exe"" --server --server-host 127.0.0.1 --startminimized", 0, False
 sh.Run "pyw ""C:\path\to\agent-keylights\agentlights.py""", 0, False
 ```
